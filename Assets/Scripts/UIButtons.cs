@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class UIButtons : MonoBehaviour
 {
+    public FirstPersonController_Sam FpsSam;
     public bool SettingsMenuActivity = false;
     public GameObject SettingsMenuObj;
     public GameObject MainUI;
@@ -43,7 +44,8 @@ public class UIButtons : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
-        Controller.Instance.m_IsPaused = false;
+        FpsSam.isPaused = false;
+        FpsSam.canMove = true;
     }
 
     public void MenuButton()

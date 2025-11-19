@@ -10728,7 +10728,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1881306422}
   - component: {fileID: 1881306421}
-  - component: {fileID: 1881306420}
   - component: {fileID: 1881306419}
   - component: {fileID: 1881306418}
   - component: {fileID: 1881306417}
@@ -11030,14 +11029,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!81 &1881306420
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881306416}
-  m_Enabled: 1
 --- !u!114 &1881306421
 MonoBehaviour:
   m_ObjectHideFlags: 0
