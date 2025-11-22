@@ -9,6 +9,8 @@ public class Flashlight : MonoBehaviour
     [SerializeField]
     float dimTime = 0.5f;
     [SerializeField]
+    (float, float) flashlightMinMax= (0.3f, 5);
+    [SerializeField]
     Light flashlight;
 
     public AudioClip FlashlightOn;
@@ -30,12 +32,12 @@ public class Flashlight : MonoBehaviour
             {
                 raycastDistance = hit.distance - 0.3f;
 
-                if (raycastDistance > 5)
+                if (raycastDistance > flashlightMinMax.Item2)
                 {
-                    raycastDistance = 5;
+                    raycastDistance = flashlightMinMax.Item2;
                 }
 
-                flashlight.intensity = Mathf.Lerp(flashlight.intensity, raycastDistance, dimTime);
+                flashlight.intensity = Mathf.Clamp(Mathf.Lerp(flashlight.intensity, raycastDistance, dimTime), flashlightMinMax.Item1, flashlightMinMax.Item2);
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -53,12 +55,12 @@ public class Flashlight : MonoBehaviour
 
                 raycastDistance = hit.distance - 0.3f;
 
-                if (raycastDistance > 5)
+                if (raycastDistance > flashlightMinMax.Item2)
                 {
-                    raycastDistance = 5;
+                    raycastDistance = flashlightMinMax.Item2;
                 }
 
-                flashlight.intensity = Mathf.Lerp(flashlight.intensity, raycastDistance, dimTime);
+                flashlight.intensity = Mathf.Clamp(Mathf.Lerp(flashlight.intensity, raycastDistance, dimTime), flashlightMinMax.Item1, flashlightMinMax.Item2);
 
                 lightActivity = true;
                 GameManager.Instance.FlashOnSource.Play();
