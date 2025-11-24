@@ -7,7 +7,7 @@ public class Flashlight : MonoBehaviour
     [SerializeField]
     float raycastDistance;
     [SerializeField]
-    float dimTime = 0.5f;
+    float dimSpeed = 0.5f;
     [SerializeField]
     (float, float) flashlightMinMax= (0.3f, 5);
 
@@ -24,14 +24,9 @@ public class Flashlight : MonoBehaviour
 
         if (Physics.Raycast(raycast, out hit))
         {
-            raycastDistance = hit.distance - flashlightMinMax.Item1;
+            raycastDistance = hit.distance;
 
-            if (raycastDistance > flashlightMinMax.Item2)
-            {
-                raycastDistance = flashlightMinMax.Item2;
-            }
-
-            flashlight.intensity = Mathf.Clamp(Mathf.Lerp(flashlight.intensity, raycastDistance, dimTime), flashlightMinMax.Item1, flashlightMinMax.Item2);
+            flashlight.intensity = Mathf.Clamp(Mathf.Lerp(flashlight.intensity, raycastDistance, dimSpeed), flashlightMinMax.Item1, flashlightMinMax.Item2);
         }
     }
 }
