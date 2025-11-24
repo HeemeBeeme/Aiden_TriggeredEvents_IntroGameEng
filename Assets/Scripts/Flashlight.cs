@@ -24,7 +24,7 @@ public class Flashlight : MonoBehaviour
 
         if (Physics.Raycast(raycast, out hit))
         {
-            raycastDistance = hit.distance - 0.3f;
+            raycastDistance = hit.distance - flashlightMinMax.Item1;
 
             if (raycastDistance > flashlightMinMax.Item2)
             {
