@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 // Sam Robichaud 2022
@@ -103,6 +104,13 @@ public class FirstPersonController_Sam : MonoBehaviour
     private Vector3 moveDirection;
     private Vector2 currentInput;
 
+    private float walkPitchRnD;
+
+    private float walkSoundWait = 0.75f;
+    private float walkTime = 0;
+
+    public AudioSource walkingSource;
+
     private float rotationX = 0;
 
     private void Awake()
@@ -156,11 +164,6 @@ public class FirstPersonController_Sam : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-
-    }
-
     private void HandleMovementInput()
     {
         // Read inputs
@@ -176,6 +179,25 @@ public class FirstPersonController_Sam : MonoBehaviour
         float moveDirectionY = moveDirection.y;
         moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
         moveDirection.y = moveDirectionY;
+
+        if(currentInput != Vector2.zero)
+        {
+            WalkSound();
+        }
+    }
+
+    private void WalkSound()
+    {
+        walkTime += Time.deltaTime;
+
+        if(walkTime >= walkSoundWait)
+        {
+            walkTime = 0;
+            walkPitchRnD = Random.Range(0.8f, 1.2f);
+            walkingSource.pitch = walkPitchRnD;
+
+            walkingSource.Play();
+        }
     }
 
     private void HandleMouseLook()
