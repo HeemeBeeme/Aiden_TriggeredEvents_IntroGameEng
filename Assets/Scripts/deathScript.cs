@@ -1,16 +1,16 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class deathScript : MonoBehaviour
 {
-    public GameObject DeathUI;
-    public GameObject PlayUI;
+    public PlayableDirector Timeline;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            DeathUI.SetActive(true);
-            PlayUI.SetActive(false);
+            Timeline.Play();
+            Destroy(this.gameObject);
         }
     }
 }

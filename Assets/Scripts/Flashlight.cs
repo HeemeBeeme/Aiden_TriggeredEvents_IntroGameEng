@@ -13,9 +13,6 @@ public class Flashlight : MonoBehaviour
 
     public Light flashlight;
 
-    public AudioClip FlashlightOn;
-    public AudioClip FlashlightOff;
-
     public bool lightActivity = true;
     void Update()
     {
